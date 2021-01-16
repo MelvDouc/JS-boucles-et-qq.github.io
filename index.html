@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+    <title>Boucles</title>
+</head>
+<body>
+<h1>Boucles</h1>
+
+    <p><u>Cinq divs</u>:</p>
+    <div>Lorem ipsum dolor sit.</div>
+    <div>Lorem ipsum dolor sit amet.</div>
+    <div>Quae debitis fuga suscipit praesentium!</div>
+    <div>Quibusdam fugiat pariatur ut.</div>
+    <div>Incidunt nulla labore quae sed.</div>
+
+    <section id="for">
+        <h2>For</h2>
+        
+        <div>Lorem ipsum dolor sit.</div>
+        <div class="for">Lorem ipsum dolor sit amet.</div>
+        <div class="for">Quae debitis fuga suscipit praesentium!</div>
+        <div>Quibusdam fugiat pariatur ut.</div>
+        <div class="for">Incidunt nulla labore quae sed.</div>
+        
+        <p class="code pre">
+const forDivs = document.querySelectorAll('div.for');
+
+for (i = 0; i &lt; forDivs.length; i++) {
+    forDivs[i].style.color = 'red';
+}
+        </p>
+    </section>
+
+    <section id="for-of">
+        <h2>For&hellip; of</h2>
+
+        <div>Lorem ipsum dolor sit.</div>
+        <div class="for-of">Lorem ipsum dolor sit amet.</div>
+        <div class="for-of">Quae debitis fuga suscipit praesentium!</div>
+        <div>Quibusdam fugiat pariatur ut.</div>
+        <div class="for-of">Incidunt nulla labore quae sed.</div>
+
+        <p class="code pre">
+const forOfDivs = document.querySelectorAll('div.for-of');
+
+for (forOfDiv <b>of</b> forOfDivs) {
+    forOfDiv.style.fontStyle = 'italic';
+}
+        </p>
+
+        <p class="expli">Équivaut à</p>
+
+        <p class="code pre">
+for(let i = 0; i &lt; forOfDivs.length; i++) {
+    forOfDivs[i].&hellip;
+}        
+        </p>
+    </section>
+
+    <section id="for-in">
+        <h2>For&hellip; in</h2>
+    
+        <p id="p-for-in"></p>
+    
+        <p class="code pre">
+const objet1 = {
+    nom: 'Doucet',
+    prenom: 'Melvin',
+    age: 29,
+    deviendraDeveloppeur: true
+};
+
+for(propriete in objet1) {
+    document.querySelector('#p-for-in').innerHTML += `&lt;b&gt;${propriete} :&lt;/b&gt; ${objet1[propriete]}&lt;br&gt;`;
+};
+        </p>
+    </section>
+
+    <section id="while">
+        <h2>While</h2>
+    
+        <p id="p-while"></p>
+    
+        <p class="code pre">
+let texte = '';
+let j = 0;
+
+while(j &lt; 10) {
+    texte += 'chiffre ' + j + '&lt;br&gt;';
+    j++;
+}
+
+document.querySelector('#p-while').innerHTML = texte;
+        </p>
+    </section>
+
+    <section id="every">
+        <h2>every()</h2>
+    
+        <p class="code pre">
+const nbrDeZeroATrente = [1, 2, 5, 15, 27, 29, 30];
+const estInferieurAQuarante = (valeur) => valeur &lt; 40;
+
+document.querySelector('#p-every').innerHTML = nbrDeZeroATrente.<b>every</b>(estInferieurAQuarante);
+        </p>
+    
+        <p id="p-every"></p>
+
+        <p class="expli">Toutes les valeurs du tableau respectent-elles la condition&nbsp;?</p>
+    </section>
+
+    <section id="some">
+        <h2>some()</h2>
+
+        <p class="code pre">
+const egaleVingtSept = (valeur) => valeur === 27;
+
+document.querySelector('#p-some').innerHTML = nbrDeZeroATrente.<b>some</b>(egaleVingtSept);
+        </p>
+
+        <p id="p-some"></p>
+
+        <p class="expli">Au moins une valeur du tableau respecte-t-elle la condition&nbsp;?</p>
+    </section>
+
+    <section id="find">
+        <h2>find()</h2>
+    
+        <p class="code pre">
+const tableauNbr1 = [1, 6, 24, 25, 40];
+const multipleDeQuatre = tableauNbr1.<b>find</b>(nbr => nbr % 4 === 0 && nbr !== 0);
+
+document.querySelector('#p-find').innerHTML = multipleDeQuatre;
+        </p>
+    
+        <p id="p-find"></p>
+    
+        <p class="expli">Renvoie la première valeur du tableau qui satisfait la condition.</p>
+    </section>
+
+    <section id="includes">
+        <h2>includes()</h2>
+    
+        <p class="code pre">
+const tableauNbr2 = [1, '1', 2];
+
+document.querySelector('#p-includes1').innerHTML = tableauNbr2.includes(1);
+document.querySelector('#p-includes2').innerHTML = tableauNbr2.includes('2');
+document.querySelector('#p-includes3').innerHTML = tableauNbr2.includes(1, 1); // Le 2e argt est l'index de départ de la recherche.
+        </p>
+    
+        <p id="p-includes1"></p>
+        <p id="p-includes2"></p>
+        <p id="p-includes3"></p>
+    
+        <p class="expli">La valeur est-elle incluse dans le tableau&nbsp;?</p>
+    </section>
+
+    <section id="filter">
+        <h2>filter()</h2>
+    
+        <p class="code pre">
+const animaux = ['chien', 'chat', 'souris', 'tyrannosaure', 'loup', 'ornithorynque'];
+const sixLettresOuPlus = animaux.<b>filter</b>(argt => argt.length >= 6);
+
+sixLettresOuPlus.forEach(function (animal) {
+    let li = document.createElement('li');
+    document.querySelector('#ul-filter').appendChild(li);
+    li.innerHTML += animal;
+})
+        </p>
+    
+        <ul id="ul-filter"></ul>
+
+            <article>
+                <h3>filter() & includes()</h3>
+    
+                <p class="code pre">
+let contientOu = animaux.<b>filter</b>(argt => argt.<b>includes</b>('ou'));
+document.querySelector('#p-filter-includes').innerHTML =  contientOu.join('; ');
+                </p>
+    
+                <p id="p-filter-includes"></p>
+            </article>
+    </section>
+
+    <section id="join">
+        <h2>join()</h2>
+
+        <p class="code pre">
+document.querySelector('#p-join').innerHTML = animaux.<b>join</b>(' ');
+        </p>
+        
+        <p id="p-join"></p>
+    </section>
+
+    <section id="splice">
+        <h2>splice()</h2>
+
+        <p class="code pre">
+const alphabetIncomplet = ['A', 'B', 'C', 'E'];
+alphabetIncomplet.splice(3, 0, 'D'); // Remplace 0 valeur à l'indice 3.
+document.querySelector('#p-splice1').innerHTML = alphabetIncomplet;
+        </p>
+        <p id="p-splice1"></p>
+
+        <p class="code pre">
+const alphabetIncompletBis = ['A', 'B', 'C', 'C'];
+alphabetIncompletBis.splice(3, 1, 'D');  // Remplace 1 valeur à l'indice 3.
+document.querySelector('#p-splice2').innerHTML = alphabetIncompletBis;
+        </p>
+        <p id="p-splice2"></p>
+    </section>
+
+<script src="./main.js"></script>
+</body>
+</html>
